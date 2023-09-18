@@ -1,4 +1,4 @@
-import { Box, HStack, Heading, Image, Text, Stack } from '@chakra-ui/react';
+import { Box, Heading, Image, Text, Stack } from '@chakra-ui/react';
 import React from 'react';
 import bgImg from '../assets/btc.png';
 import { motion } from 'framer-motion';

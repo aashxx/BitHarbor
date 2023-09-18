@@ -38,7 +38,7 @@ const CoinDetails = () => {
         loading ? <Loader /> :
         <>
         {/* Coin Chart Component */}
-        <Box mt={['10', '20']}>
+        <Box mt={['10','20']}>
           <CoinChart arr={chartArray} currency={currencySymbol} days={days} />
         </Box>
 

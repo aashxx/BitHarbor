@@ -116,7 +116,11 @@ const CryptoState = (props) => {
 
             case 'max':
                 setDays('max');
-                break;                 
+                break;     
+                
+            default:
+                setDays('24h');
+                break;
         }
     }
 
