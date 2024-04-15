@@ -23,8 +23,7 @@ const CoinDetails = () => {
   // Fetching Coin Info
   useEffect(()=>{
     fetchCoin(params.id);
-    // eslint-disable-next-line.
-  }, [params.id])
+  }, [params.id, currency, days])
 
   // Displaying error component if data does not fetch
   if(errors) {
@@ -67,7 +66,7 @@ const CoinDetails = () => {
           <Text fontSize={"small"} opacity={"0.7"} alignSelf={'center'}>Last Updated on {Date(coin.market_data.last_updated).split('G')[0]}</Text>
 
           {/* Coin Logo */}
-          <Img src={coin.image.large} h={'16'} w={'16'} objectFit={'contain'}/>
+          <Img src={coin.image.large} h={'16'} w={'16'} objectFit={'contain'} />
 
           {/* Coin Name, Price and change percent */}
           <Stat>
