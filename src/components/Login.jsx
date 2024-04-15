@@ -56,11 +56,11 @@ const Login = () => {
             <Stack spacing="6">
                 <form method="post" onSubmit={handleLogin}>
                     <Stack spacing="5">
-                    <FormControl>
+                    <FormControl isRequired>
                         <FormLabel htmlFor="email">Email</FormLabel>
                         <Input id="email" name="email" value={newUser.email} type="email" onChange={event => setNewUser({ ...newUser, [event.target.name]: event.target.value})} />
                     </FormControl>
-                    <FormControl>
+                    <FormControl isRequired>
                         <FormLabel htmlFor="password">Password</FormLabel>
                         <Input id="password" name="password" value={newUser.password} type="password" onChange={event => setNewUser({ ...newUser, [event.target.name]: event.target.value})} />
                     </FormControl>

@@ -32,7 +32,7 @@ const AuthState = ({children}) => {
                 name: result.user.displayName,
                 email: result.user.email,
                 photo: result.user.photoURL,
-                subscription: "free",
+                subscription: "Free",
                 createdAt: serverTimestamp()
             });
 
@@ -62,7 +62,6 @@ const AuthState = ({children}) => {
     // Manual Signup
     const handleSignup = async (event) => {
         event.preventDefault();
-        console.log(createUser);
         try {
             const result = await createUserWithEmailAndPassword(auth, createUser.email, createUser.password);
             const editUser = result.user;
@@ -82,7 +81,7 @@ const AuthState = ({children}) => {
                     name: editUser.displayName,
                     email: editUser.email,
                     photo: editUser.photoURL,
-                    subscription: "free",
+                    subscription: "Free",
                     createdAt: serverTimestamp()
                 });
             }
@@ -123,7 +122,7 @@ const AuthState = ({children}) => {
         try {
             await auth.signOut();
             setUser(null);
-            navigate('/');
+            navigate('/auth/login');
             window.location.reload();
         } catch (error) {
             console.error(error);
@@ -131,13 +130,30 @@ const AuthState = ({children}) => {
     }
 
     useEffect(() => {
-        onAuthStateChanged(auth, user => {
+        onAuthStateChanged(auth, async (user) => {
           if(user) {
-            setUser(user);
+            try {
+                const userRef = doc(db, 'users', user.uid);
+                const userDoc = await getDoc(userRef);
+                
+                if(userDoc.exists()) {
+                    const userData = {
+                        uid: user.uid,
+                        ...userDoc.data()
+                    }
+                    setUser(userData);
+                    
+                } else {
+                    setUser(null);
+                }
+            } catch (err) {
+                console.error("Error fetching user document:", err);
+            }
           } else {
             setUser(null);
           }
         })
+
     }, []);
 
     return (
