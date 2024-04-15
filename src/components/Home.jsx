@@ -4,6 +4,7 @@ import bgImg from '../assets/btc.png';
 import { motion } from 'framer-motion';
 import Carousels from './Carousels';
 import FAQ from './FAQ';
+import Pricing from './Pricing';
 
 const Home = () => {
   return (
@@ -27,6 +28,9 @@ const Home = () => {
           <Image filter={'grayscale(1)'} maxH={'100%'} borderRadius={'15px'} maxW={'100%'} src='https://img.freepik.com/free-photo/businessman-standing-with-icons_53876-24914.jpg?w=360&t=st=1694977981~exp=1694978581~hmac=1df484f0de1cae122818976a5b5201ce03ea19c7c9dec30b880b0a45b028dae5' />
         </Box>
       </Stack>
+
+      {/* Pricing Component */}
+      <Pricing />
 
       {/* FAQ Component */}
       <FAQ />
