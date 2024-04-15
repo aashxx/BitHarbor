@@ -1,9 +1,13 @@
 import { Button, HStack, Stack } from '@chakra-ui/react';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthContext';
 
 // Header Component
 const Navbar = () => {
+
+  const { user } = useContext(AuthContext);
+
   return (
     <Stack direction={['column', 'row']} justifyContent={['center', 'space-between']} p={4} bgColor={'blackAlpha.900'} shadow={'base'}>
       <HStack justifyContent={'center'}>
@@ -20,7 +24,7 @@ const Navbar = () => {
         </Button>
         <Button variant={'unstyled'} color={'white'} px={'2'} css={{'&:hover': {color: 'gray'}}}>
           <Link to='/exchanges'>Exchanges</Link>
-        </Button> 
+        </Button>
       </HStack>
     </Stack>
   )
