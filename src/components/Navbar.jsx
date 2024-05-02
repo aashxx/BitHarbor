@@ -16,7 +16,7 @@ const Navbar = () => {
           <Link to={'/'}>BitHarbor</Link>
         </Button>
       </HStack>
-      <HStack justifyContent={'center'} spacing={'8'}>
+      <HStack justifyContent={'center'} spacing={['4', '8']}>
         <Button variant={'unstyled'} color={'white'} px={'2'} css={{'&:hover': {color: 'gray'}}}>
           <Link to='/'>Home</Link>
         </Button>
@@ -44,7 +44,7 @@ const Navbar = () => {
               }
             </Popup>
           ) : (
-            <Button variant={'ghost'} bgColor={'white'} css={{'&:hover': {color: 'gray'}}}>
+            <Button variant={'ghost'} bgColor={'white'} px={'2'} css={{'&:hover': {color: 'gray'}}}>
               <Link to='/auth/signup'>Sign Up</Link>
             </Button>
           )

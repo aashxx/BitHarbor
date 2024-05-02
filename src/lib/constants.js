@@ -11,7 +11,7 @@ export const PLANS = [
             "BitHarbor Platform",
             "Top 5 Coin Ranks",
             "All Exchanges Rank",
-            "Basic Analytics"
+            "Basic Analytics",
         ]
     },
     {

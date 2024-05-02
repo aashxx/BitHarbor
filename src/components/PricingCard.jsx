@@ -5,7 +5,7 @@ import { FaCheckCircle } from "react-icons/fa";
 
 const PricingCard = ({ name, description, price, billed, link, buttonText, heading, features }) => {
   return (
-    <Card h={'484px'} bgColor={'transparent'} w={'250px'} color={'white'} borderRadius={'lg'} border={'2px solid white'}>
+    <Card bgColor={'transparent'} h={'484px'} w={'250px'} color={'white'} borderRadius={'lg'} border={'2px solid white'}>
       <CardHeader>
         <Heading>{name}</Heading>
         <Text color={'gray'}>{description}</Text>
