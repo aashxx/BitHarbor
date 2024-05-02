@@ -10,17 +10,19 @@ const CryptoState = (props) => {
     const host = 'https://api.coingecko.com/api/v3';
 
     // Loaders and Error Handlers
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState(false);
 
     // Fetching data for crypto exchanges
     const [exchanges, setExchanges] = useState([]);
     const fetchExchanges = async () => {
         try {
+            setLoading(true);
             const {data} = await axios.get(`${host}/exchanges`);
             setExchanges(data);
             setLoading(false);
         } catch (err) {
+            setLoading(true);
             setErrors(true);
             setLoading(false);
         }
@@ -42,16 +44,17 @@ const CryptoState = (props) => {
     // Method for changing pages
     const changePage = (page) => {
         setPage(page);
-        setLoading(true);
     }
 
     // Fetching coins method
     const fetchCoins = async () => {
         try {
+            setLoading(true);
             const {data} = await axios.get(`${host}/coins/markets?vs_currency=${currency}&page=${page}`);
             setCoins(data);
             setLoading(false);
         } catch (err) {
+            setLoading(true);
             setErrors(true);
             setLoading(false);
         }
@@ -76,6 +79,7 @@ const CryptoState = (props) => {
             setChartArray(chartData.prices);
             setLoading(false);
         } catch (err) {
+            setLoading(true);
             setErrors(true);
             setLoading(false);
         }

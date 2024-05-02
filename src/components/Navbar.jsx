@@ -28,7 +28,7 @@ const Navbar = () => {
         </Button>
         {
           user ? (
-            <Popup trigger={<Button h={'12'} w={'12'} p={'0'} borderRadius={'full'}>
+            <Popup trigger={<Button h={'12'} w={'12'} p={'0'} borderRadius={'full'} border={'2px solid black'}>
               <Img maxH={'full'} borderRadius={'full'} maxW={'full'} src={user?.photo} alt='AV' />
             </Button>}>
               {
