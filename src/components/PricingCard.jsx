@@ -3,7 +3,7 @@ import { Card, CardHeader, CardBody, CardFooter, Heading, Text, Button, VStack }
 import { List, ListItem, ListIcon } from '@chakra-ui/react';
 import { FaCheckCircle } from "react-icons/fa";
 
-const PricingCard = ({ name, description, price, billed, link, buttonText, heading, features }) => {
+const PricingCard = ({ name, description, price, billed, link, heading, features }) => {
   return (
     <Card bgColor={'transparent'} h={'484px'} w={'250px'} color={'white'} borderRadius={'lg'} border={'2px solid white'}>
       <CardHeader>
@@ -15,7 +15,7 @@ const PricingCard = ({ name, description, price, billed, link, buttonText, headi
         <Text color={'gray'}>{billed}</Text>
         <Button variant={'ghost'} my={2} w={'full'} bgColor={'white'}>
           <a href={link}>
-            {buttonText}
+            Try Now
           </a>
         </Button>
       </CardBody>

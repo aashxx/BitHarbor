@@ -5,7 +5,6 @@ export const PLANS = [
         price: "INR 0",
         billed: "/mo",
         link: "/auth/signup",
-        buttonText: "Try Now",
         heading: "Free Plan Features",
         features: [
             "BitHarbor Platform",
@@ -19,8 +18,7 @@ export const PLANS = [
         description: "Access more than 100 cryptocurrencies",
         price: "INR 2499",
         billed: "/mo",
-        link: "mailto:tmohamedaashir@gmail.com?subject=Enquiry%20For%20Pro%20Plan%20Access",
-        buttonText: "Contact Sales",
+        link: "https://buy.stripe.com/test_9AQdSx6wa9Eb3G84gp",
         heading: "Pro Plan Features",
         features: [
             "BitHarbor Platform",
@@ -35,8 +33,7 @@ export const PLANS = [
         description: "Full access with all features unlocked.",
         price: "INR 4499",
         billed: "/mo",
-        link: "mailto:tmohamedaashir@gmail.com?subject=Enquiry%20For%20Premium%20Plan%20Access",
-        buttonText: "Contact Sales",
+        link: "https://buy.stripe.com/test_fZe9Ch5s603Ba4w9AL",
         heading: "Premium Plan Features",
         features: [
             "Advanced Analytics",

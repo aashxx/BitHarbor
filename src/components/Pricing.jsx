@@ -11,7 +11,7 @@ const Pricing = () => {
         <Stack direction={["column", "row"]} justifyContent={'center'} gap={'10'} alignItems={'center'} w={['250px','100%']} my={'10'}>
             {
                 PLANS.map((plan) => (
-                    <PricingCard key={plan.name} name={plan.name} description={plan.description} link={plan.link} buttonText={plan.buttonText} price={plan.price} billed={plan.billed} heading={plan.heading} features={plan.features} />
+                    <PricingCard key={plan.name} name={plan.name} description={plan.description} link={plan.link} price={plan.price} billed={plan.billed} heading={plan.heading} features={plan.features} />
                 ))
             }
         </Stack>
