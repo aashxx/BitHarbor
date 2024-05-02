@@ -35,7 +35,7 @@ const Navbar = () => {
                 (close) => (
                   <VStack bgColor={'white'} px={'8'} py={'5'} borderRadius={'md'}>
                     <Text fontWeight={'bold'} fontSize={'lg'}>{user.name?.split(' ')[0]}</Text>
-                    <Text fontSize={'md'}>{user.subscription} Plan</Text>
+                    <Text fontSize={'md'}>{user.subscription.toUpperCase()} PLAN</Text>
                     <Button onClick={handleSignOut} variant={'ghost'} px={'2'} color={'white'} bgColor={'blackAlpha.900'} css={{'&:hover': {color: 'gray'}}}>
                       Log Out
                     </Button>

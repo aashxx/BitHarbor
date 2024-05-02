@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth, db } from '../lib/firebase';
-import { doc, setDoc, serverTimestamp, getDoc } from 'firebase/firestore';
+import { doc, setDoc, serverTimestamp, getDoc, updateDoc } from 'firebase/firestore';
 
 export const AuthContext = createContext();
 
@@ -32,7 +32,7 @@ const AuthState = ({children}) => {
                 name: result.user.displayName,
                 email: result.user.email,
                 photo: result.user.photoURL,
-                subscription: "Free",
+                subscription: "free",
                 createdAt: serverTimestamp()
             });
 
@@ -81,7 +81,7 @@ const AuthState = ({children}) => {
                     name: editUser.displayName,
                     email: editUser.email,
                     photo: editUser.photoURL,
-                    subscription: "Free",
+                    subscription: "free",
                     createdAt: serverTimestamp()
                 });
             }
@@ -129,6 +129,20 @@ const AuthState = ({children}) => {
         }
     }
 
+    // Upgrading plan
+    const upgradePlan = async (plan) => {
+        try {
+            await updateDoc(doc(db, "users", user.uid), {
+                subscription: plan
+            });
+            setTimeout(() => {
+                handleSignOut();
+            }, 3000);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
           if(user) {
@@ -157,7 +171,7 @@ const AuthState = ({children}) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, handleGoogleSignup, handleGoogleLogin, handleSignOut, createUser, setCreateUser, handleSignup, newUser, setNewUser, handleLogin }}>
+        <AuthContext.Provider value={{ user, handleGoogleSignup, upgradePlan, handleGoogleLogin, handleSignOut, createUser, setCreateUser, handleSignup, newUser, setNewUser, handleLogin }}>
             {children}
         </AuthContext.Provider>
     )

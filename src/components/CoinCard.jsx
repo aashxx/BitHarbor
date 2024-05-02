@@ -12,7 +12,7 @@ const CoinCard = ({id, name, img, symbol, price, currencySymbol = "₹"}) => {
   return (
     <>
     {
-      user.subscription === "Free" ? (
+      user.subscription === "free" ? (
           <VStack cursor={'not-allowed'} w={'52'} p={'8'} borderRadius={'lg'} shadow={'lg'} transition={'all 0.3s'} m={'4'} 
           css={
             {"&:hover": {

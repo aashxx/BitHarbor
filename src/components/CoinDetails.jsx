@@ -82,7 +82,7 @@ const CoinDetails = () => {
         </RadioGroup>
 
         {
-          user.subscription === "Premium" ? (
+          user.subscription === "premium" ? (
             <VStack spacing={'4'} alignItems={'flex-start'} p={['50px 10px','16']}>
 
             {/* Last Updated */}

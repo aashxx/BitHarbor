@@ -48,7 +48,7 @@ const Coins = () => {
       </RadioGroup>
 
       {
-        user.subscription === "Free" ? 
+        user.subscription === "free" ? 
             // Loader Component
             loading ? <Loader /> : 
             <>
