@@ -69,6 +69,7 @@ const CryptoState = (props) => {
     // Method for fetching coin info and chart info
     const fetchCoin = async (id) => {
         try {
+            setLoading(true);
             const {data} = await axios.get(`${host}/coins/${id}`);
             const {data: chartData} = await axios.get(`${host}/coins/${id}/market_chart?vs_currency=${currency}&days=${days}`);
             setCoin(data);
@@ -125,7 +126,7 @@ const CryptoState = (props) => {
     }
 
     return (
-        <CryptoContext.Provider value={{loading, errors, exchanges, fetchExchanges, coins, currency, setCurrency, currencySymbol, page, pages, fetchCoins, changePage, coin, fetchCoin, chartArray, days, switchChartStats, days_select}}>
+        <CryptoContext.Provider value={{loading, setCoin, setLoading, host, setChartArray, setErrors, errors, exchanges, fetchExchanges, coins, currency, setCurrency, currencySymbol, page, pages, fetchCoins, changePage, coin, fetchCoin, chartArray, days, switchChartStats, days_select}}>
             {props.children}
         </CryptoContext.Provider>
     )
