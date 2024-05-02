@@ -11,6 +11,8 @@ import Loader from './Loader';
 import ErrorPage from './ErrorPage';
 
 import { CryptoContext } from '../contexts/CryptoContext';
+import { AuthContext } from '../contexts/AuthContext';
+import SubscriptionBlock from './SubscriptionBlock';
 
 const CoinDetails = () => {
 
@@ -20,6 +22,8 @@ const CoinDetails = () => {
   const [show, setShow] = useState(false);
   // Using the coin ID as params
   const params = useParams();
+
+  const { user } = useContext(AuthContext);
 
   // Fetching Coin Info
   useEffect(()=>{
@@ -77,41 +81,47 @@ const CoinDetails = () => {
           </HStack>
         </RadioGroup>
 
-        {/* Coin Info */}
-        <VStack spacing={'4'} alignItems={'flex-start'} p={['50px 10px','16']}>
+        {
+          user.subscription === "Premium" ? (
+            <VStack spacing={'4'} alignItems={'flex-start'} p={['50px 10px','16']}>
 
-          {/* Last Updated */}
-          <Text fontSize={"small"} opacity={"0.7"} alignSelf={'center'}>Last Updated on {Date(coin?.market_data.last_updated).split('G')[0]}</Text>
+            {/* Last Updated */}
+            <Text fontSize={"small"} opacity={"0.7"} alignSelf={'center'}>Last Updated on {Date(coin?.market_data.last_updated).split('G')[0]}</Text>
 
-          {/* Coin Logo */}
-          <Img src={coin?.image.large} h={'16'} w={'16'} objectFit={'contain'} />
+            {/* Coin Logo */}
+            <Img src={coin?.image.large} h={'16'} w={'16'} objectFit={'contain'} />
 
-          {/* Coin Name, Price and change percent */}
-          <Stat>
-            <StatLabel>{coin?.name}</StatLabel>
-            <StatNumber>{currencySymbol}{coin?.market_data.current_price[currency]}</StatNumber>
-            <StatHelpText>
-              <StatArrow type={coin?.market_data.price_change_percentage_24h > 0 ? "increase" : "decrease"}/>
-              {coin?.market_data.price_change_percentage_24h}%
-            </StatHelpText>
-          </Stat>
+            {/* Coin Name, Price and change percent */}
+            <Stat>
+              <StatLabel>{coin?.name}</StatLabel>
+              <StatNumber>{currencySymbol}{coin?.market_data.current_price[currency]}</StatNumber>
+              <StatHelpText>
+                <StatArrow type={coin?.market_data.price_change_percentage_24h > 0 ? "increase" : "decrease"}/>
+                {coin?.market_data.price_change_percentage_24h}%
+              </StatHelpText>
+            </Stat>
 
-          {/* Coin Market Rank */}
-          <Badge color={'white'} bgColor={'blackAlpha.800'} fontSize={'2xl'}>
-            #{coin?.market_cap_rank}
-          </Badge>
+            {/* Coin Market Rank */}
+            <Badge color={'white'} bgColor={'blackAlpha.800'} fontSize={'2xl'}>
+              #{coin?.market_cap_rank}
+            </Badge>
 
-          {/* Coin Progress Bar */}
-          <CoinProgress high={`${currencySymbol}${coin?.market_data.high_24h[currency]}`} low={`${currencySymbol}${coin?.market_data.low_24h[currency]}`} />
+            {/* Coin Progress Bar */}
+            <CoinProgress high={`${currencySymbol}${coin?.market_data.high_24h[currency]}`} low={`${currencySymbol}${coin?.market_data.low_24h[currency]}`} />
 
-          {/* Coin Market Info */}
-          <CoinDetailItem title={'Max Supply'} value={coin?.market_data.max_supply ? coin?.market_data.max_supply : 'NA'} />
-          <CoinDetailItem title={'Circulating Supply'} value={coin?.market_data.circulating_supply ? coin?.market_data.circulating_supply : 'NA'} />
-          <CoinDetailItem title={'Market Capital'} value={`${currencySymbol}${coin?.market_data.market_cap[currency] ? coin?.market_data.market_cap[currency] : 'NA'}`} />
-          <CoinDetailItem title={'All Time Low'} value={`${currencySymbol}${coin?.market_data.atl[currency] ? coin?.market_data.atl[currency] : 'NA'}`} /> 
-          <CoinDetailItem title={'All Time High'} value={`${currencySymbol}${coin?.market_data.ath[currency] ? coin?.market_data.ath[currency] : 'NA'}`} /> 
-          
-        </VStack>
+            {/* Coin Market Info */}
+            <CoinDetailItem title={'Max Supply'} value={coin?.market_data.max_supply ? coin?.market_data.max_supply : 'NA'} />
+            <CoinDetailItem title={'Circulating Supply'} value={coin?.market_data.circulating_supply ? coin?.market_data.circulating_supply : 'NA'} />
+            <CoinDetailItem title={'Market Capital'} value={`${currencySymbol}${coin?.market_data.market_cap[currency] ? coin?.market_data.market_cap[currency] : 'NA'}`} />
+            <CoinDetailItem title={'All Time Low'} value={`${currencySymbol}${coin?.market_data.atl[currency] ? coin?.market_data.atl[currency] : 'NA'}`} /> 
+            <CoinDetailItem title={'All Time High'} value={`${currencySymbol}${coin?.market_data.ath[currency] ? coin?.market_data.ath[currency] : 'NA'}`} /> 
+            
+          </VStack>
+          ) : (
+            <SubscriptionBlock message={"Purchase Premium to unlock advanced analytics for this coin"} />
+          )
+        }
+
       </>)
       }
     </Container>
